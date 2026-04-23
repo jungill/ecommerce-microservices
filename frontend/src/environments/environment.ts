@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api'  // Via le gateway
+  apiUrl: 'https://gateway-service-l5oh.onrender.com/api'
 };
