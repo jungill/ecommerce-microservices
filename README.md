@@ -282,4 +282,4 @@ ecommerce-microservices/
 ## Auteur
 
 **Junior** — Développeur Full-Stack  
-GitHub : [@jungill](https://github.com/jungill)
+GitHub : [@jungill](https://github.com/jungill/ecommerce-microservices.git)
