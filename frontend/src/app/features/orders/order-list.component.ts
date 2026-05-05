@@ -17,32 +17,35 @@ import { Order } from '../../core/models/order.model';
 
       <div *ngIf="loading" class="loading">Chargement...</div>
 
-      <table class="table" *ngIf="!loading && orders.length > 0">
-        <thead>
-          <tr>
-            <th>#</th><th>Produit</th><th>Qté</th><th>Total</th><th>Statut</th><th>Date</th><th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let o of orders">
-            <td>{{ o.id }}</td>
-            <td>{{ o.productName }}</td>
-            <td>{{ o.quantity }}</td>
-            <td>{{ o.totalPrice | number:'1.2-2' }} €</td>
-            <td><span class="badge" [ngClass]="o.status?.toLowerCase()">{{ o.status }}</span></td>
-            <td>{{ o.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
-            <td>
-              <button *ngIf="o.status === 'PENDING'" (click)="confirm(o.id!)" class="btn btn-sm btn-success">Confirmer</button>
-              <button *ngIf="o.status !== 'CANCELLED'" (click)="cancel(o.id!)" class="btn btn-sm btn-danger">Annuler</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="table" *ngIf="!loading && orders.length > 0">
+          <thead>
+            <tr>
+              <th>#</th><th>Produit</th><th>Qté</th><th>Total</th><th>Statut</th><th>Date</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let o of orders">
+              <td>{{ o.id }}</td>
+              <td>{{ o.productName }}</td>
+              <td>{{ o.quantity }}</td>
+              <td>{{ o.totalPrice | number:'1.2-2' }} €</td>
+              <td><span class="badge" [ngClass]="o.status?.toLowerCase()">{{ o.status }}</span></td>
+              <td>{{ o.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+              <td>
+                <button *ngIf="o.status === 'PENDING'" (click)="confirm(o.id!)" class="btn btn-sm btn-success">Confirmer</button>
+                <button *ngIf="o.status !== 'CANCELLED'" (click)="cancel(o.id!)" class="btn btn-sm btn-danger">Annuler</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div *ngIf="!loading && orders.length === 0" class="empty">Aucune commande.</div>
     </div>
   `,
   styles: [`
     .page { padding:24px; max-width:1100px; margin:0 auto; }
+    .table-wrapper { overflow-x: auto; }
     .page-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
     h1 { font-size:1.8rem; color:#1a6bad; }
     .table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px #0001; }
