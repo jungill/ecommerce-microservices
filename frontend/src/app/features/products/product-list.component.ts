@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
@@ -74,7 +74,7 @@ export class ProductListComponent implements OnInit {
   loading = false;
   searchTerm = '';
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() { this.load(); }
 
@@ -97,7 +97,6 @@ export class ProductListComponent implements OnInit {
   }
 
   order(p: Product) {
-    // TODO Tâche 14 : naviguer vers /orders/new?productId=p.id
-    alert('Fonctionnalité à implémenter (Tâche 14)');
+    this.router.navigate(['/orders/new'], { queryParams: { productId: p.id } });
   }
 }

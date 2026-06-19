@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OrderService } from '../../core/services/order.service';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
@@ -59,11 +59,16 @@ export class OrderFormComponent implements OnInit {
     private fb: FormBuilder,
     private orderService: OrderService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.productService.getAll().subscribe(p => this.products = p);
+    this.productService.getAll().subscribe(products => {
+      this.products = products;
+      const id = this.route.snapshot.queryParamMap.get('productId');
+      if (id) this.form.patchValue({ productId: id });
+    });
   }
 
   submit() {
