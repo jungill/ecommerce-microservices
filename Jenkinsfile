@@ -32,6 +32,11 @@ pipeline {
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'docker compose up --build -d'
+            }
+        }
     }
 
     post {
