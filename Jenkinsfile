@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker compose up --build -d'
+                sh 'docker compose -p ecommerce up --build -d'
             }
         }
     }
