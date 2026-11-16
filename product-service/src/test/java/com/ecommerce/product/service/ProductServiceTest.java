@@ -62,7 +62,7 @@ class ProductServiceTest {
         ProductResponse response = service.create(request);
 
         assertThat(response.getId()).isEqualTo(1L);
-        assertThat(response.getName()).isEqualTo("Clavier cassé");
+        assertThat(response.getName()).isEqualTo("Clavier mécanique");
         assertThat(response.getPrice()).isEqualByComparingTo("79.99");
         assertThat(response.getStock()).isEqualTo(15);
         verify(repository, times(1)).save(any(Product.class));
